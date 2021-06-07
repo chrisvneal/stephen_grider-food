@@ -10,13 +10,14 @@ const SearchScreen = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   // function to use axios to retrieve results and store in state via state variable's setter function
-  const searchApi = async () => {
+
+  const searchApi = async (searchTerm) => {
     try {
       // capture response frpm yelp api using parameters
       const response = await yelp.get("/search", {
         params: {
           limit: 50,
-          term,
+          term: searchTerm,
           location: "hawaii",
         },
       });
@@ -31,9 +32,17 @@ const SearchScreen = () => {
     }
   };
 
+  // Call searchAPI when component is first rendered... bAD CODE!
+
+  // searchApi("pasta");
+
   return (
     <View>
-      <SearchBar term={term} onTermChange={setTerm} onTermSubmit={searchApi} />
+      <SearchBar
+        term={term}
+        onTermChange={setTerm}
+        onTermSubmit={() => searchApi(term)}
+      />
       {errorMessage ? <Text>{errorMessage}</Text> : null}
       <Text>We have found {results.length} results</Text>
     </View>
