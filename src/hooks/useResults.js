@@ -9,7 +9,7 @@ export default () => {
 
   const searchApi = async (searchTerm) => {
     try {
-      // capture response frpm yelp api using parameters
+      // capture response from yelp api using parameters
       const response = await yelp.get("/search", {
         params: {
           limit: 50,
@@ -18,20 +18,19 @@ export default () => {
         },
       });
 
-      // once the response is received, store them in the results piece of state. The data is always in 'response.data' and we want the business object of that data
+      // once the response is received, store them in the results piece of state. The data is always in 'response.data' and we want the 'business' object of that data
 
       setResults(response.data.businesses);
     } catch (err) {
+      // if there's an error, it should be logged somehow
       console.log(err);
 
+      // setting the error message will change state, update component and display any dynamic error messages
       setErrorMessage("Something went wrong!");
     }
   };
 
-  // Call searchAPI when component is first rendered... bAD CODE!
-
-  // searchApi("pasta");
-
+  // useEffect, when passed a function and empty array, will run one time. useState would keep updating and pulling results
   useEffect(() => {
     searchApi("pasta");
   }, []);
