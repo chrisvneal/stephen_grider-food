@@ -18,9 +18,9 @@ const SearchScreen = () => {
       />
       {errorMessage ? <Text>{errorMessage}</Text> : null}
       <Text>We have found {results.length} results</Text>
-      <ResultsList />
-      <ResultsList />
-      <ResultsList />
+      <ResultsList headerText={"Cost Effective"} />
+      <ResultsList headerText={"Bit Pricier"} />
+      <ResultsList headerText={"Big Spender"} />
     </View>
   );
 };
