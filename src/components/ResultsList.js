@@ -8,6 +8,7 @@ const ResultsList = ({ headerText, results }) => {
       <Text style={styles.titleStyle}>{headerText}</Text>
       <FlatList
         horizontal
+        showsHorizontalScrollIndicator={false}
         data={results}
         keyExtractor={(result) => result.id}
         renderItem={({ item }) => {
@@ -26,7 +27,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   container: {
-    marginBottom: 10,
+    marginBottom: 30,
   },
 });
 
